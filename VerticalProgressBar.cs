@@ -25,8 +25,7 @@ public class VerticalProgressBar : VisualElement
     public float MinValue { get; set; } = 0;
     public VerticalProgressBar()
     {
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/UI Toolkit/CustomComponents/VerticalProgressBar.uxml");
-        visualTree.CloneTree(this);
+        Resources.Load<VisualTreeAsset>("CustomComponents/VerticalProgressBar").CloneTree(this);
 
         _progressBar = this.Q<VisualElement>("progress-bar");
         _progressBarFill = this.Q<VisualElement>("progress-bar-fill");
