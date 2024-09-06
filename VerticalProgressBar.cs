@@ -15,7 +15,25 @@ public class VerticalProgressBar : VisualElement
         set
         {
             _originalValue = value;
-            _progressBarFill.style.height = Length.Percent(GetInterpolatedValue(value));
+            var percent = GetInterpolatedValue(value);
+            _progressBarFill.style.height = Length.Percent(percent);
+            if (percent >= 100)
+            {
+                _progressBarFill.AddToClassList("vertical-progress-bar-full");
+                _progressBarFill.RemoveFromClassList("vertical-progress-bar-empty");
+            }
+            else
+            {
+                _progressBarFill.RemoveFromClassList("vertical-progress-bar-full");
+                if (percent <= 0)
+                {
+                    _progressBarFill.AddToClassList("vertical-progress-bar-empty");
+                }
+                else
+                {
+                    _progressBarFill.RemoveFromClassList("vertical-progress-bar-empty");
+                }
+            }
         }
     }
 
